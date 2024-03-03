@@ -1,0 +1,371 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "PTA_Bot",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720",
+        "comment": "This trigger runs when a conversation update activity is sent to the bot. This indicates a user or bot being added or removed from a conversation.",
+        "name": "Greeter"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item",
+            "comment": "For each member added to the conversation."
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else",
+                "comment": "Checks that that member added ID does not match the bot ID. This prevents the greeting message from being sent when the bot is added to a conversation."
+              },
+              "condition": "=string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "859266",
+                    "name": "Send a response"
+                  },
+                  "activity": "${SendActivity_859266()}"
+                }
+              ]
+            }
+          ],
+          "value": "dialog.foreach.value",
+          "index": "dialog.foreach.index"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u",
+        "comment": "This trigger fires when an incoming activity is not handled by any other trigger."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "lVjwEB"
+          },
+          "property": "turn.question",
+          "value": "=replace(turn.activity.text, '\"', '')"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "W5zFfW"
+          },
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "PclCoM"
+              },
+              "activity": "${SendActivity_PclCoM()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.BeginDialog",
+              "$designer": {
+                "id": "5bNOyq"
+              },
+              "activityProcessed": true,
+              "dialog": "Dialog_Question"
+            }
+          ],
+          "condition": "=exists(turn.question) && length(turn.question) > 0"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "Kfrq5K",
+        "name": "Show FAQ Categories"
+      },
+      "intent": "ShowFAQCategories",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "vjn0se"
+          },
+          "activity": "${SendActivity_vjn0se()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "w7idEI",
+        "name": "Show help message"
+      },
+      "intent": "ShowOptions",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "nX0IT3"
+          },
+          "activity": "${SendActivity_nX0IT3()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnError",
+      "$designer": {
+        "id": "jUM7vt",
+        "name": "Handle error"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "mq3AIr"
+          },
+          "activity": "${SendActivity_mq3AIr()}"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "LzwXWi",
+        "name": "View General Questions"
+      },
+      "intent": "ShowGeneralQuestions",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "hEvSp4"
+          },
+          "activity": "${SendActivity_hEvSp4()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "hk4ftc"
+          },
+          "activity": "${SendActivity_hk4ftc()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "BUeTRS",
+        "name": "View Schedule Questions"
+      },
+      "intent": "ViewScheduleQuestions",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "Yg0Mtf"
+          },
+          "activity": "${SendActivity_Yg0Mtf()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ELw4lA"
+          },
+          "activity": "${SendActivity_ELw4lA()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "BHnzNQ",
+        "name": "View Schedule Swap Questions"
+      },
+      "intent": "ViewScheduleSwapQuestions",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "oeEm2y"
+          },
+          "activity": "${SendActivity_oeEm2y()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "eoPNOL"
+          },
+          "activity": "${SendActivity_eoPNOL()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "gY2Jld",
+        "name": "View Schedule Bid Questions"
+      },
+      "intent": "ViewScheduleBidQuestions",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "1mpWnl"
+          },
+          "activity": "${SendActivity_1mpWnl()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "IkIPsH"
+          },
+          "activity": "${SendActivity_IkIPsH()}"
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "zf9if9",
+        "name": "BeginScheduleSwap"
+      },
+      "intent": "BeginScheduleSwap",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "cEgID4"
+          },
+          "activityProcessed": true,
+          "dialog": "Dialog_ScheduleSwap"
+        }
+      ],
+      "priority": 0
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "jJz3gg",
+        "name": "BeginScheduleBid"
+      },
+      "intent": "BeginScheduleBid",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "iP777N"
+          },
+          "activityProcessed": true,
+          "dialog": "Dialog_ScheduleBid"
+        }
+      ],
+      "priority": 0
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "leVQUy",
+        "name": "BeginViewSchedule"
+      },
+      "intent": "BeginViewSchedule",
+      "actions": [
+        {
+          "$kind": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "FYLNvY"
+          },
+          "activityProcessed": true,
+          "dialog": "Dialog_ViewSchedules"
+        }
+      ],
+      "priority": 0
+    },
+    {
+      "$kind": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "lGo9xX",
+        "name": "Debug"
+      },
+      "intent": "Debug",
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "qJITZZ"
+          },
+          "activity": "${SendActivity_qJITZZ()}"
+        }
+      ]
+    }
+  ],
+  "generator": "PTA_Bot.lg",
+  "id": "PTA_Bot",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": [
+      {
+        "intent": "ShowFAQCategories",
+        "pattern": "^faq$"
+      },
+      {
+        "intent": "ShowGeneralQuestions",
+        "pattern": "view general (faq|questions)"
+      },
+      {
+        "intent": "ViewScheduleQuestions",
+        "pattern": "view schedule[s]? (faq|questions)"
+      },
+      {
+        "intent": "ViewScheduleSwapQuestions",
+        "pattern": "view schedule swap(ping)? (faq|questions)"
+      },
+      {
+        "intent": "ViewScheduleBidQuestions",
+        "pattern": "view schedule bid(ding)? (faq|questions)"
+      },
+      {
+        "intent": "BeginScheduleSwap",
+        "pattern": "^swap schedule[s]?$"
+      },
+      {
+        "intent": "BeginScheduleBid",
+        "pattern": "^bid schedule[s]?$"
+      },
+      {
+        "intent": "BeginViewSchedule",
+        "pattern": "^view schedule[s]?$"
+      },
+      {
+        "intent": "ShowOptions",
+        "pattern": "^(hello|hi|what can you do|(show )?help|((go |back to )?home))$"
+      },
+      {
+        "intent": "Debug",
+        "pattern": "^debug$"
+      }
+    ]
+  }
+}

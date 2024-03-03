@@ -1,0 +1,107 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "Dblzvh",
+    "name": "Dialog_AnswerQuestion",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "d9KVRc"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "lAsU6r"
+          },
+          "property": "turn.activity.text",
+          "value": "=replace(turn.activity.text, '\"', '\\'')"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "G7og96"
+          },
+          "activity": "${SendActivity_G7og96()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "cxHY15"
+          },
+          "resultProperty": "turn.results",
+          "method": "POST",
+          "url": "https://pal-qna-dev.cognitiveservices.azure.com/language/:query-knowledgebases?projectName=pal-qna-dev&api-version=2021-10-01&deploymentName=test",
+          "headers": {
+            "Ocp-Apim-Subscription-Key": "2a4009698c5f43e9a1f0540287ec73c0"
+          },
+          "contentType": "application/json",
+          "responseType": "json",
+          "body": "{\"top\": 3,\"question\": \"${turn.activity.text}\",\"includeUnstructuredSources\": true,\"confidenceScoreThreshold\": \"0.5\",\"answerSpanRequest\": {\"enable\": false,\"topAnswersWithSpan\": 1,\"confidenceScoreThreshold\": \"0.5\"}}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "6FieMz"
+          },
+          "property": "turn.answer",
+          "value": "=replace(first(turn.results.content.answers).answer, '\"', '\\\"')"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "27nNrG"
+          },
+          "condition": "=startsWith(turn.answer, \"No answer found\")",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "0frRoS"
+              },
+              "activity": "${SendActivity_0frRoS()}"
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "M5fUGN"
+              },
+              "activity": "${SendActivity_M5fUGN()}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnError",
+      "$designer": {
+        "id": "WSNkCx",
+        "name": "Handle error"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ZcRKeS"
+          },
+          "activity": "${SendActivity_ZcRKeS()}"
+        }
+      ]
+    }
+  ],
+  "generator": "Dialog_Question.lg",
+  "recognizer": {
+    "$kind": "Microsoft.RegexRecognizer",
+    "intents": []
+  },
+  "id": "Dialog_Question"
+}

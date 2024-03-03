@@ -1,0 +1,10 @@
+[import](common.lg)
+
+# SendActivity_3PpRLc()
+[Activity
+    Text = ${SendActivity_3PpRLc_text()}
+]
+
+# SendActivity_3PpRLc_text()
+- Sorry, viewing schedules is not available yet.
+- This feature is not available right now.

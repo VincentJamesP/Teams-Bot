@@ -1,0 +1,74 @@
+[import](common.lg)
+
+# SendActivity_0frRoS()
+[Activity
+    Summary = ${turn.answer}
+    Attachments = ${json(SendActivity_0frRoS_attachment_gZZPrs())}
+]
+
+# SendActivity_0frRoS_attachment_gZZPrs()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "${turn.answer}",
+            "wrap": true
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Back to FAQ",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Back to FAQ",
+                "value": "FAQ"
+            }}
+        }
+    ]
+}```
+# SendActivity_ZcRKeS()
+- ${ErrorActivity()}
+
+# SendActivity_G7og96()
+- ${SendTypingIndicator()}
+
+# SendActivity_M5fUGN()
+[Activity
+    Summary = No answer found.
+    Attachments = ${json(SendActivity_M5fUGN_attachment_jkrmCL())}
+]
+
+# SendActivity_M5fUGN_attachment_jkrmCL()
+- ```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "${NoAnswer()}",
+            "weight": "Default",
+            "isSubtle": false,
+            "wrap": true
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Back to FAQ",
+            "data": {
+                "msteams": {
+                    "type": "imBack",
+                    "title": "Back to FAQ",
+                    "value": "FAQ"
+                }
+            }
+        }
+    ]
+}```

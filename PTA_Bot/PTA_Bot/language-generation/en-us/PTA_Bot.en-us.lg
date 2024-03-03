@@ -1,0 +1,464 @@
+[import](common.lg)
+
+# SendActivity_nX0IT3()
+[Activity
+    Summary = How can I help?
+    Attachments = ${json(Attachment_Help())}
+]
+
+# SendActivity_859266()
+[Activity
+    Summary = Hi there! How can I help?
+    Attachments = ${json(Attachment_Help())}
+]
+
+# SendActivity_vjn0se()
+[Activity
+    Attachments = ${json(Attachment_FAQ())}
+]
+
+# SendActivity_hEvSp4()
+[Activity
+    Text = ${Text_GeneralFAQ()}
+]
+
+# SendActivity_Yg0Mtf()
+[Activity
+    Text = ${Text_ScheduleFAQ()}
+]
+
+# SendActivity_oeEm2y()
+[Activity
+    Text = ${Text_SwapFAQ()}
+]
+
+# SendActivity_1mpWnl()
+[Activity
+    Text = ${Text_BidFAQ()}
+]
+
+# SendActivity_eoPNOL()
+[Activity
+    Summary = Sent the schedule swapping FAQ
+    Attachments = ${json(Attachment_SwapFAQ())}
+]
+
+# SendActivity_IkIPsH()
+[Activity
+    Summary = Sent the schedule bidding FAQ
+    Attachments = ${json(Attachment_BidFAQ())}
+]
+
+# SendActivity_ELw4lA()
+[Activity
+    Summary = Sent the crew schedules FAQ
+    Attachments = ${json(Attachment_ScheduleFAQ())}
+]
+
+# SendActivity_hk4ftc()
+[Activity
+    Summary = Sent the general FAQ
+    Attachments = ${json(Attachment_GeneralFAQ())}
+]
+
+# SendActivity_mq3AIr()
+- ${ErrorActivity()}
+
+# SendActivity_PclCoM()
+- ${DidNotUnderstand()}
+
+# Attachment_Help()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Hello there!",
+            "color": "Accent"
+        },
+        {
+            "type": "TextBlock",
+            "text": "Here are some of the things I can do:\n\n- Answer frequently asked questions\n\nReady to get started? What would you like to do today?",
+            "wrap": true
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "FAQ",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "FAQ",
+                "value": "FAQ"
+            }}
+        }
+    ]
+}```
+
+# Attachment_FAQ()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "Sure, what would you like to know?",
+            "color": "Accent"
+        },
+        {
+            "type": "TextBlock",
+            "text": "You can ask a question directly, and I'll try my best to answer.\n\nDon't know what to ask? Select one of the categories below to view some questions:",
+            "wrap": true
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+            "type": "Action.Submit",
+            "title": "General",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "View General FAQ",
+                "value": "View General FAQ"
+            }}
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Schedules",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "View Schedules FAQ",
+                "value": "View Schedules FAQ"
+            }}
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Schedule Swapping",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "View Schedule Swapping FAQ",
+                "value": "View Schedule Swapping FAQ"
+            }}
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Schedule Bidding",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "View Schedule Bidding FAQ",
+                "value": "View Schedule Bidding FAQ"
+            }}
+        }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Back to Home",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Back to Home",
+                "value": "Back to Home"
+            }}
+        }
+    ]
+}```
+
+# Text_GeneralFAQ()
+- Here's a list of general questions that you can ask:
+- Here's what I can answer:
+- Here's a list of general questions:
+- Here's what you can ask:
+
+# Text_ScheduleFAQ()
+- Here's what I can answer about schedules:
+- Here's a list of schedule questions that you can ask:
+- Here's a list of questions about schedules:
+- Here's what you can ask about schedules:
+
+# Text_SwapFAQ()
+- Here's a list of questions about swapping schedules:
+- Here's a list of schedule swapping questions you can ask:
+- Here's what I can answer about swapping schedules:
+- Here's what you can ask about swapping schedules:
+
+# Text_BidFAQ()
+- Here's what you can ask about schedule bidding:
+- Here's a list of schedule bidding questions:
+- Here's what I can answer about schedule bidding:
+- Here's a list of questions about schedule bidding:
+
+# Attachment_SwapFAQ()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Go Back",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Go Back",
+                "value": "FAQ"
+            }}
+        }
+    ],
+    "body": [
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "What is Schedule Swapping?",
+                    "data": {"msteams":{
+                        "type": "imBack",
+                        "title": "What is Schedule Swapping?",
+                        "value": "What is Schedule Swapping?"
+                    }}
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "How do I swap schedules?",
+                    "data": {"msteams":{
+                        "type": "imBack",
+                        "title": "How do I swap schedules?",
+                        "value": "How do I swap schedules?"
+                    }}
+                }
+            ]
+        }
+    ]
+}```
+
+# Attachment_BidFAQ()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Go Back",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Go Back",
+                "value": "FAQ"
+            }}
+        }
+    ],
+    "body": [
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "What is Schedule Bidding?",
+                    "data": {"msteams":{
+                        "type": "imBack",
+                        "title": "What is Schedule Bidding?",
+                        "value": "What is Schedule Bidding?"
+                    }}
+                },
+                {
+                    "type": "Action.Submit",
+                    "title": "How do I bid for a schedule?",
+                    "data": {"msteams":{
+                        "type": "imBack",
+                        "title": "How do I bid for a schedule?",
+                        "value": "How do I bid for a schedule?"
+                    }}
+                }
+            ]
+        }
+    ]
+}```
+
+# Attachment_ScheduleFAQ()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Go Back",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Go Back",
+                "value": "FAQ"
+            }}
+        }
+    ],
+    "body": [
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Submit",
+                    "title": "How do I view my schedules?",
+                    "data": {"msteams":{
+                        "type": "imBack",
+                        "title": "How do I view my schedules?",
+                        "value": "How do I view my schedules?"
+                    }}
+                }
+            ]
+        }
+    ]
+}```
+
+# Attachment_GeneralFAQ()
+-```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Go Back",
+            "data": {"msteams":{
+                "type": "imBack",
+                "title": "Go Back",
+                "value": "FAQ"
+            }}
+        }
+    ],
+    "body": [
+        {
+            "type": "ActionSet",
+            "actions": [
+                
+            ]
+        }
+    ]
+}```
+
+# SendActivity_qJITZZ()
+- ${ErrorActivity()}
+
+# Attachment_ScheduleNotification()
+- ```{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2",
+    "type": "AdaptiveCard",
+    "msTeams": {
+        "width": "full"
+    },
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "Crew Scheduling",
+                    "weight": "Bolder",
+                    "size": "Medium",
+                    "isSubtle": true
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "You have been assigned to Flight #${turn.pairingResponse.label}",
+                    "wrap": true,
+                    "size": "Large",
+                    "weight": "Bolder",
+                    "color": "Accent"
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "Please confirm schedules/flight assignment",
+                    "wrap": true,
+                    "isSubtle": true,
+                    "spacing": "None",
+                    "size": "Small"
+                }
+            ]
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "auto",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": " ",
+                            "wrap": true
+                        },
+                        {
+                            "type": "Image",
+                            "url": "https://adaptivecards.io/content/airplane.png",
+                            "altText": "Airplane",
+                            "size": "Small",
+                            "horizontalAlignment": "Center"
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Flight #${turn.pairingResponse.label}",
+                            "wrap": true,
+                            "weight": "Bolder",
+                            "spacing": "Small",
+                            "size": "Large",
+                            "isSubtle": true
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "${turn.pairingResponse.from} (${turn.pairingResponse.fromCode}) to ${turn.pairingResponse.to} (${turn.pairingResponse.toCode})",
+                            "wrap": true,
+                            "spacing": "Small",
+                            "size": "Large"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "{{DATE(${turn.pairingResponse.startDate}, SHORT)}}",
+                            "wrap": true,
+                            "isSubtle": true,
+                            "spacing": "Small",
+                            "size": "Medium"
+                        }
+                    ]
+                }
+            ],
+            "separator": true,
+            "spacing": "Medium"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Reject",
+            "style": "destructive"
+        },
+        {
+            "type": "Action.Submit",
+            "title": "Accept",
+            "style": "positive"
+        }
+    ]
+}```

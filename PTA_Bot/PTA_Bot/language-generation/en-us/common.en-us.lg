@@ -1,0 +1,140 @@
+# SendTypingIndicator()
+[Activity
+    Type = ${"typing"}
+]
+
+# DidNotUnderstand()
+-Sorry, I don't understand. I'm just a simple bot.
+-I'm sorry, I didn't get that. I'm just a simple bot.
+-I'm just a simple bot - I'm not sure what you mean.
+
+# NoAnswer()
+-Sorry, I can't answer that.
+-I'm sorry, I don't have an answer to that yet.
+-Hmm, I don't know how to answer that.
+-Sorry, could you rephrase that?
+-I only have answers to specific questions.
+# ActionConfirmation()
+-Sure!
+-Okay!
+-Ok!
+-One moment!
+
+# ErrorActivity()
+[Activity
+    Summary = Sent error details
+    Text = ${Error()}
+    Attachments = ${json(ErrorCard())}
+]
+
+# Error()
+-An error has occurred:
+-A problem has occurred:
+
+# ErrorCard()
+-```{
+    "type": "AdaptiveCard",
+    "msTeams": { "width": "full" },
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "medium",
+            "weight": "bolder",
+            "text": "${turn.dialogEvent.value.ClassName}",
+            "color": "attention"
+        },
+        {
+            "type": "TextBlock",
+            "text": "**Occurred in:** ${turn.dialogEvent.value.Data.DialogContext.ActiveDialog} in ${turn.dialogEvent.value.Data.DialogContext.Parent}",
+            "wrap": true,
+            "weight": "Bolder",
+            "fontType": "Default",
+            "size": "Default",
+            "color": "Default",
+            "separator": true
+        },
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Additional details",
+                                    "wrap": true,
+                                    "size": "Default",
+                                    "isSubtle": true,
+                                    "weight": "Bolder"
+                                }
+                            ],
+                            "width": "stretch"
+                        },
+                        {
+                            "type": "Column",
+                            "id": "chevronDown2",
+                            "spacing": "Small",
+                            "verticalContentAlignment": "Center",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "url": "https://adaptivecards.io/content/down.png",
+                                    "width": "20px",
+                                    "altText": "collapsed"
+                                }
+                            ],
+                            "width": "auto"
+                        },
+                        {
+                            "type": "Column",
+                            "id": "chevronUp2",
+                            "isVisible": false,
+                            "spacing": "Small",
+                            "verticalContentAlignment": "Center",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "url": "https://adaptivecards.io/content/up.png",
+                                    "width": "20px",
+                                    "altText": "expanded"
+                                }
+                            ],
+                            "width": "auto"
+                        }
+                    ],
+                    "selectAction": {
+                        "type": "Action.ToggleVisibility",
+                        "targetElements": [
+                            "cardContent2",
+                            "chevronUp2",
+                            "chevronDown2"
+                        ]
+                    }
+                },
+                {
+                    "type": "Container",
+                    "id": "cardContent2",
+                    "isVisible": false,
+                    "items": [
+                        {
+                            "type": "Container",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${turn.dialogEvent.value.message}",
+                                    "isSubtle": true,
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.2"
+}```

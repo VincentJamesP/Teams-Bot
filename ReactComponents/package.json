@@ -1,0 +1,40 @@
+{
+    "name": "kti.pal.teams.components",
+    "version": "0.1.1",
+    "description": "",
+    "scripts": {
+        "build": "webpack --config webpack.prod.js",
+        "watch": "webpack --watch --config webpack.dev.js",
+        "start": "webpack-dev-server --config webpack.dev.js"
+    },
+    "author": "",
+    "license": "AGPL-3.0-or-later",
+    "dependencies": {
+        "@fluentui/react-northstar": "^0.62.0",
+        "@fluentui/react-teams": "^6.1.2",
+        "@fluentui/web-components": "^2.5.1",
+        "@microsoft/teams-js": "^2.0.0",
+        "axios": "^0.27.2",
+        "prop-types": "^15.7.2",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-responsive": "^9.0.0-beta.10"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.15.8",
+        "@babel/plugin-transform-runtime": "^7.18.2",
+        "@babel/preset-env": "^7.15.8",
+        "@babel/preset-react": "^7.17.12",
+        "autoprefixer": "^10.3.7",
+        "babel-loader": "^8.2.3",
+        "babel-plugin-import": "^1.13.5",
+        "css-loader": "^6.4.0",
+        "glob": "^8.0.3",
+        "html-webpack-plugin": "^5.4.0",
+        "mini-css-extract-plugin": "^2.4.2",
+        "terser-webpack-plugin": "^5.3.3",
+        "webpack": "^5.59.1",
+        "webpack-cli": "^4.9.1",
+        "webpack-dev-server": "^4.3.1"
+    }
+}

@@ -1,0 +1,10 @@
+[import](common.lg)
+
+# SendActivity_Qzy4FJ()
+[Activity
+    Text = ${SendActivity_Qzy4FJ_text()}
+]
+
+# SendActivity_Qzy4FJ_text()
+- Sorry, schedule bidding is not available yet.
+- This feature is not available right now.

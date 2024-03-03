@@ -1,0 +1,10 @@
+[import](common.lg)
+
+# SendActivity_mApL5S()
+[Activity
+    Text = ${SendActivity_mApL5S_text()}
+]
+
+# SendActivity_mApL5S_text()
+- Sorry, schedule swapping is not available yet.
+- This feature is not available right now.
